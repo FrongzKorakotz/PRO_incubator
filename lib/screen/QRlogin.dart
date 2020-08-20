@@ -23,19 +23,23 @@ class _QRloginState extends State<QRlogin> {
           ),
         ),
         child: Center(
-          child: Column(mainAxisSize: MainAxisSize.min,
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.center,  
             children: <Widget>[
               Container(
                 width: 320.0,
                 child: Image.asset("lib/img/logom.png"),
               ),
-              Container(
-                child: MaterialButton(
-                  child: Text("Scan QR-CODE"),
+              Container(width: 220.0,
+              child: ClipRRect(
+                //ลดเหลี่ยมปุ่ม
+                borderRadius: BorderRadius.circular(50),
+                child: RaisedButton(color: Colors.teal[400],
+                  child: Text("Scan QR-CODE",style: TextStyle(color: Colors.white),),
                   onPressed: () => scanQrCode(),
                     
                 ), 
+              )
               )
             ],
           )
@@ -55,3 +59,5 @@ class _QRloginState extends State<QRlogin> {
     }
   }
 }
+
+
