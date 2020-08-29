@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:incubator/data/firebase.dart';
+String tempupdat = '0';
+String humupdat = '0';
 class Status extends StatefulWidget {
   @override
   _StatusState createState() => _StatusState();
 }
-
 class _StatusState extends State<Status> {
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -20,26 +23,28 @@ class _StatusState extends State<Status> {
               image: AssetImage("lib/img/bg.JPG"), fit: BoxFit.cover),
         ),
         child: Center(
-          child: Column(mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,  
+          child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,          
             children: <Widget>[
-              Container(margin: EdgeInsets.only(top: 400.0), width: 220.0,
-                child: ClipRRect(
-                //ลดเหลี่ยมปุ่ม
-                borderRadius: BorderRadius.circular(50),
-                child: RaisedButton(color: Colors.teal[400],
-                  child: Text("HISTORY",style: TextStyle(color: Colors.white),),
-                  onPressed: (){}  
-                ), 
-              )
-              )
+              Column(
+          children: [
+            Text('Temputarure:',style: TextStyle(fontSize: 50,color: Colors.red[300])),
+            Text(tempupdat.toString(),style: TextStyle(fontSize: 50)),
+              ],
+           ),
+              Column(
+                
+          children: [
+            Text('Humudity:',style: TextStyle(fontSize: 50,color: Colors.blue[300])),
+            Text(humupdat.toString(),style: TextStyle(fontSize: 50)),
+              ],
+           ),
             ],
           )
         ),
         ), 
     );
   }
-
+  
   Drawer showDrawer() => Drawer(
           child: ListView(
         children: <Widget>[
@@ -53,36 +58,52 @@ class _StatusState extends State<Status> {
 
   ListTile showCONTROL() {
     return ListTile(
-      leading: Icon(Icons.android),
+      leading: Icon(Icons.settings),
       title: Text("CONTROL"),
     );
   }
 
   ListTile showalertchick() {
     return ListTile(
-      leading: Icon(Icons.android),
+      leading: Icon(Icons.alarm),
       title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
     );
   }
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.android),
+      leading: Icon(Icons.add_alert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
     );
   }
 
   ListTile showChickdata() {
     return ListTile(
-      leading: Icon(Icons.android),
+      leading: Icon(Icons.info),
       title: Text("ข้อมูลไก่"),
     );
   }
 
   ListTile showManual() {
     return ListTile(
-      leading: Icon(Icons.android),
+      leading: Icon(Icons.help),
       title: Text("คู่มือการใช้งาน"),
     );
   }
+}
+
+
+void readatatemp(){
+    tempRef.once().then((DataSnapshot dataSnapshot){
+      var tempupd = dataSnapshot.value.toString();
+      tempupdat = tempupd;
+      print(tempupdat);
+    });
+}
+void readatahum(){
+  humRef.once().then((DataSnapshot dataSnapshot){
+    var humupd = dataSnapshot.value.toString();
+    humupdat = humupd;
+    print(humupdat);
+  });
 }

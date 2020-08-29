@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "805272509762",
+    "firebase_url": "https://incubator-data.firebaseio.com",
+    "project_id": "incubator-data",
+    "storage_bucket": "incubator-data.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805272509762:android:ba2fab30013c8955343cdb",
+        "android_client_info": {
+          "package_name": "flutterthailand.incubator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805272509762-ddsjt8du4d9sbolfecelisqc75bmhnmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2G0b_U0B_IALk90D32IXjPxEk-83cJ2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805272509762-ddsjt8du4d9sbolfecelisqc75bmhnmf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
