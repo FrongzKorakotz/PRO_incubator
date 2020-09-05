@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:incubator/screen/Control.dart';
 import 'package:incubator/screen/QRlogin.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/data/firebase.dart';
