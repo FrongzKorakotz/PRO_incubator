@@ -53,6 +53,8 @@ flutter:
   assets:
       - lib/img/bg.JPG
       - lib/img/logom.png
+      - lib/img/theometer.png
+      - lib/img/humidity.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

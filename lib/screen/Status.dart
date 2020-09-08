@@ -9,8 +9,7 @@ import 'package:incubator/screen/Manual.dart';
 
 
 
-String tempupdat = '0';
-String humupdat = '0';
+
 class Status extends StatefulWidget {
   @override
   _StatusState createState() => _StatusState();
@@ -31,19 +30,63 @@ class _StatusState extends State<Status> {
               image: AssetImage("lib/img/bg.JPG"), fit: BoxFit.cover),
         ),
         child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,          
+          child: Column(         
             children: <Widget>[
               Column(
+                children: [
+                  Text('',style: TextStyle(fontSize: 50,color: Colors.red[300],))
+                ],
+              ),
+              Column(
           children: [
-            Text('Temputarure:',style: TextStyle(fontSize: 50,color: Colors.red[300])),
-            Text(tempupdat.toString(),style: TextStyle(fontSize: 50)),
+             
+             Text('Temputarure:',style: TextStyle(fontSize: 50,color: Colors.red[300],shadows: [
+        Shadow( // bottomLeft
+          offset: Offset(-1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // bottomRight
+          offset: Offset(1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // topRight
+          offset: Offset(1.5, 1.5),
+          color: Colors.white
+        ),
+        Shadow( // topLeft
+          offset: Offset(-1.5, 1.5),
+          color: Colors.white
+        ),
+      ])),
+             Text(tempupdat.toString()+" °C",style: TextStyle(fontSize: 50))
+             ,Image.asset("lib/img/theometer.png",width: 170,)
+           
+            
               ],
            ),
               Column(
                 
           children: [
-            Text('Humudity:',style: TextStyle(fontSize: 50,color: Colors.blue[300])),
-            Text(humupdat.toString(),style: TextStyle(fontSize: 50)),
+            Text('Humudity:',style: TextStyle(fontSize: 50,color: Colors.blue[300],shadows: [
+        Shadow( // bottomLeft
+          offset: Offset(-1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // bottomRight
+          offset: Offset(1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // topRight
+          offset: Offset(1.5, 1.5),
+          color: Colors.white
+        ),
+        Shadow( // topLeft
+          offset: Offset(-1.5, 1.5),
+          color: Colors.white
+        ),
+      ])),
+            Text(humupdat.toString()+" °C",style: TextStyle(fontSize: 50)),
+            Image.asset("lib/img/humidity.png",width: 120,)
               ],
            ),
             ],
@@ -131,17 +174,4 @@ class _StatusState extends State<Status> {
 }
 
 
-void readatatemp(){
-    tempRef.once().then((DataSnapshot dataSnapshot){
-      var tempupd = dataSnapshot.value.toString();
-      tempupdat = tempupd;
-      print(tempupdat);
-    });
-}
-void readatahum(){
-  humRef.once().then((DataSnapshot dataSnapshot){
-    var humupd = dataSnapshot.value.toString();
-    humupdat = humupd;
-    print(humupdat);
-  });
-}
+

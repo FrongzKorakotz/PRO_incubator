@@ -5,67 +5,145 @@ import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Manual.dart';
 
 class Control extends StatefulWidget {
-  @override
+ @override
   _ControlState createState() => _ControlState();
 }
 
 class _ControlState extends State<Control> {
-  var selectedmode;
-  List<String> _modetype = <String>[
-    "ตั้งค่าวันที่ฟัก"
-    "ตั้งค่าอุณหภูมิ"
-    "ตั้งค่าความชื้น"
-    "ตั้งค่าจำนวนการกลับไข่"
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Container(
             margin: EdgeInsets.only(left: 90.0), child: Text("CONTROL")),
       ),
       drawer: showDrawer(),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            selectdropdown(),
-          ],
-        ),
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage("lib/img/bg.JPG"), fit: BoxFit.cover),
+        ),
+        child: Center(
+          child: Column(
+              children: <Widget>[
+                new Text("",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new Text("จำนวนวันที่ฟัก",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width:3.0 ) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green, width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30)
+                      ) 
+                      ),
+                    prefixIcon: Icon(Icons.date_range) ,
+                    hintText: ""
+                  ),
+                ),
+                new Text("",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new Text("อุณหภูมิ",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black,width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30))
+                      ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green,width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30)) 
+                      ),
+                    prefixIcon: Icon(Icons.confirmation_number) ,
+                    hintText: ""
+                  ),
+                ),
+                new Text("",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new Text("ความชื้น",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black,width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30))
+                      ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green,width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30)) 
+                      ),
+                    prefixIcon: Icon(Icons.spa) ,
+                    hintText: ""
+                  ),
+                ),
+                new Text("",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new Text("จำนวนพลิก รอบต่อวัน",style: TextStyle(fontSize: 20,color: Colors.black)),
+                new TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black,width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30))
+                      ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green,width:3.0) ,
+                      borderRadius: BorderRadius.all(Radius.circular(30)) 
+                      ),
+                    prefixIcon: Icon(Icons.hourglass_empty) ,
+                    hintText: ""
+                  ),
+                ),
+          const SizedBox(height: 20),
+          RaisedButton(
+            onPressed: () {},
+            textColor: Colors.white,
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: <Color>[
+                    Color(0xFF0D47A1),
+                    Color(0xFF1976D2),
+                    Color(0xFF42A5F5),
+                  ],
+                ),
+              ),
+              padding: const EdgeInsets.all(10.0),
+              child:
+                  const Text('  ยืนยัน  ', style: TextStyle(fontSize: 20)),
+            ),),],
+          ),
         ),
       ),
     );
   }
 
-  Widget selectdropdown() => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 25, left: 25, right: 25),
-            child: DropdownButton(
-              items: _modetype.map((value) {
-                var dropdownMenuItem = DropdownMenuItem(
-                  child: Text(
-                    value,
-                  ),
-                  value: value,
-                );
-                return dropdownMenuItem;
-              }).toList(),
-              onChanged: (selectedmodetype) {
-                setState(() {
-                  selectedmode = selectedmodetype;
-                });
-              },
-              value: selectedmode,
-              hint: Text("กรุณาเลือก", style: TextStyle(fontSize: 20)),
-            ),
-          ),
-        ],
-      );
+  //Widget selectdropdown() => Row(
+    //    mainAxisAlignment: MainAxisAlignment.start,
+      //  children: [
+        //  Container(
+          //  margin: EdgeInsets.only(top: 25, left: 25, right: 25),
+           // child: DropdownButton(
+             // items: _modetype.map((value) {
+               // var dropdownMenuItem = DropdownMenuItem(
+                 // child: Text(
+                  //  value,
+                  //),
+                  //value: value,
+                //);
+                //return dropdownMenuItem;
+              //}).toList(),
+              //onChanged: (selectedmodetype) {
+                //setState(() {
+                  //selectedmode = selectedmodetype;
+                //});
+              //},
+              //value: selectedmode,
+              //hint: Text("กรุณาเลือก", style: TextStyle(fontSize: 20)),
+            //),
+          //),
+        //],
+      //);
 
   Drawer showDrawer() => Drawer(
           child: ListView(
