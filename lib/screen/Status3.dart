@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:incubator/data/firebase.dart';
 import 'package:incubator/screen/Log.dart';
+import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/Status2.dart';
-import 'package:incubator/screen/Status3.dart';
 import 'package:incubator/screen/control.dart';
 import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
@@ -11,12 +11,11 @@ import 'package:incubator/screen/Manual.dart';
 import 'dart:async';
 
 
-class Status extends StatefulWidget {
+class Status3 extends StatefulWidget {
   @override
-  _StatusState createState() => _StatusState();
+  _Status3State createState() => _Status3State();
 }
-  
-class _StatusState extends State<Status> {
+class _Status3State extends State<Status3> {
 String _now;
 Timer _everySecond;
 @override
@@ -33,6 +32,7 @@ Timer _everySecond;
       });
     });
   }
+  
 void choiceAction(String choice){
     if(choice == ChooseStatus.Statuss1){
       Navigator.push(context,
@@ -50,9 +50,9 @@ void choiceAction(String choice){
     return new Scaffold(
       appBar: AppBar(
         title: Container(
-            margin: EdgeInsets.only(left: 60.0), child: Text("สถานะของตู้ฟักไข่ที่ 1",style: TextStyle(color: Colors.blueGrey[400]),)),
+            margin: EdgeInsets.only(left: 60.0), child: Text("สถานะของตู้ฟักไข่ตู้ที่ 3",style: TextStyle(color: Colors.blueGrey[400]),)),
             backgroundColor: Colors.yellow[300],
-            actions: <Widget>[
+        actions: <Widget>[
             PopupMenuButton<String>(
               onSelected: choiceAction,
               itemBuilder: (BuildContext context){
@@ -75,7 +75,7 @@ void choiceAction(String choice){
         child: Center(
           child: Column(         
             children: <Widget>[
-              
+               
               SizedBox(height: 50,),
               Stack(
                 alignment: Alignment.topLeft,
@@ -104,7 +104,7 @@ void choiceAction(String choice){
               ),
               Column(
           children: [
-             Text(tempupdat.toString()+" °C",style: TextStyle(fontSize: 50))
+             Text(tempupdat3.toString()+" °C",style: TextStyle(fontSize: 50))
               ],
            ),
               SizedBox(height:20),
@@ -132,15 +132,15 @@ void choiceAction(String choice){
       ])),
             Image.asset("lib/img/humidity.png",height: 90,width: 40,)
               ]),
-       Text(humupdat.toString()+" %",style: TextStyle(fontSize: 50)), 
+       Text(humupdat3.toString()+" %",style: TextStyle(fontSize: 50)), 
        SizedBox(height: 30,),
        Text('วันที่เริ่มฟัก',style: TextStyle(fontSize: 30),),
             SizedBox(height: 20,),
-            Text(dateNow,style: TextStyle(fontSize: 20),),
+            Text(dateNow3,style: TextStyle(fontSize: 20),),
             SizedBox(height: 20,),
             Text('วันสิ้นสุดการฟัก',style: TextStyle(fontSize: 30),),
             SizedBox(height: 20,),
-            Text(dateEnd,style: TextStyle(fontSize: 20),)],
+            Text(dateEnd3,style: TextStyle(fontSize: 20),)],
           )
         ),
         ), 
@@ -160,7 +160,7 @@ void choiceAction(String choice){
         ],
       ));
 
-    ListTile showCONTROL() {
+  ListTile showCONTROL() {
     return ListTile(
       leading: Icon(Icons.settings),
       title: Text("ตั้งค่าตู้ฟักไข่"),
@@ -250,3 +250,12 @@ class ChooseStatus{
   ];
 }
 
+void choiceAction(String choice){
+    if(choice == ChooseStatus.Statuss1){
+      print('ตู้ที่1');
+    }else if(choice == ChooseStatus.Statuss2){
+      print('ตู้ที่2');
+    }else if(choice == ChooseStatus.Statuss3){
+      print('ตู้ที่3');
+    }
+  }

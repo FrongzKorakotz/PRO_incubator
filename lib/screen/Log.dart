@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
 import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
+import 'package:incubator/screen/Chickdata.dart';
 
-class Chickdata extends StatefulWidget {
+class Log extends StatefulWidget {
   @override
-  _ChickdataState createState() => _ChickdataState();
+  _LogState createState() => _LogState();
 }
 
-class _ChickdataState extends State<Chickdata> {
+class _LogState extends State<Log> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-            margin: EdgeInsets.only(left: 60.0), child: Text("ข้อมูลของสายพันธุ์",style: TextStyle(color: Colors.blueGrey[400]),)),
+            margin: EdgeInsets.only(left: 30.0), child: Text("บันทึกย้อนหลังของตู้ฟักไข่",style: TextStyle(color: Colors.blueGrey[400]),)),
             backgroundColor: Colors.yellow[300]
       ),
       drawer: showDrawer(),
@@ -26,6 +26,7 @@ class _ChickdataState extends State<Chickdata> {
           image: DecorationImage(
               image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
         ),
+      
     ),
     );
   }
@@ -35,6 +36,7 @@ class _ChickdataState extends State<Chickdata> {
           showIndata(),
           showCONTROL(),
           showalertchick(),
+          showChickdata(),
           showalertTH(),
           showManual()
         ],
@@ -79,6 +81,19 @@ class _ChickdataState extends State<Chickdata> {
     );
   }
 
+  ListTile showChickdata() {
+    return ListTile(
+      leading: Icon(Icons.info),
+      title: Text("ข้อมูลของสายพันธุ์"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Chickdata());
+        Navigator.push(context, route);
+      },
+    );
+  }
+
   ListTile showManual() {
     return ListTile(
       leading: Icon(Icons.help),
@@ -99,18 +114,6 @@ class _ChickdataState extends State<Chickdata> {
         Navigator.pop(context);
         MaterialPageRoute route =
             MaterialPageRoute(builder: (value) => Status());
-        Navigator.push(context, route);
-      },
-    );
-  }
-  ListTile showLogdata() {
-    return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
-      title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => Log());
         Navigator.push(context, route);
       },
     );

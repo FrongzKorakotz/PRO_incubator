@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:incubator/screen/Log.dart';
+import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
 import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Manual.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter/cupertino.dart';
 
 class Alertth extends StatefulWidget {
   @override
@@ -10,27 +14,100 @@ class Alertth extends StatefulWidget {
 }
 
 class _AlertthState extends State<Alertth> {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  new FlutterLocalNotificationsPlugin();
+  var initializationSettingsAndroid;
+  var initializationSettingsIOS;
+  var initializationSettings;
+
+  void _showNotification() async {
+    await _demoNotification();
+  }
+
+  Future<void> _demoNotification() async {
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'channel_ID', 'channel name', 'channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'test ticker');
+
+    var iOSChannelSpecifics = IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails();
+
+    await flutterLocalNotificationsPlugin.show(0, 'Hello, buddy',
+        'A message from flutter buddy', platformChannelSpecifics,
+        payload: 'test oayload');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializationSettingsAndroid =
+        new AndroidInitializationSettings('app_icon');
+    initializationSettingsIOS = new IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('Notification payload: $payload');
+    }
+    await Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => new Status()));
+  }
+
+  Future onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+              title: Text(title),
+              content: Text(body),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text('Ok'),
+                  onPressed: () async {
+                    Navigator.of(context, rootNavigator: true).pop();
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Status()));
+                  },
+                )
+              ],
+            ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-            margin: EdgeInsets.only(left: 90.0), child: Text("ALERTTH")),
+            margin: EdgeInsets.only(left: 15.0), child: Text("แจ้งเตือนอุณหภูมิ และ ความชื้น",style: TextStyle(color: Colors.blueGrey[400]),)),
+            backgroundColor: Colors.yellow[300]
       ),
       drawer: showDrawer(),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("lib/img/bg.JPG"), fit: BoxFit.cover),
+              image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
         ),
+        child: Center(child: Column(children: <Widget>[
+          RawMaterialButton(
+            onPressed: _showNotification,
+            fillColor: Colors.blue,
+            child: Text('Raw Material Button', style: TextStyle(color: Colors.white),))
+        ],),),
     ),
     );
   }
     Drawer showDrawer() => Drawer(
           child: ListView(
         children: <Widget>[
+          showIndata(),
           showCONTROL(),
           showalertchick(),
+          showLogdata(),
           showChickdata(),
           showManual()
         ],
@@ -39,7 +116,7 @@ class _AlertthState extends State<Alertth> {
   ListTile showCONTROL() {
     return ListTile(
       leading: Icon(Icons.settings),
-      title: Text("CONTROL"),
+      title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route = 
@@ -65,7 +142,7 @@ class _AlertthState extends State<Alertth> {
   ListTile showChickdata() {
     return ListTile(
       leading: Icon(Icons.info),
-      title: Text("ข้อมูลไก่"),
+      title: Text("ข้อมูลของสายพันธุ์"),
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route = 
@@ -83,6 +160,30 @@ class _AlertthState extends State<Alertth> {
         Navigator.pop(context);
         MaterialPageRoute route = 
           MaterialPageRoute(builder: (value)=>Manual());
+        Navigator.push(context, route);
+      },
+    );
+  }
+    ListTile showIndata() {
+    return ListTile(
+      leading: Icon(Icons.show_chart),
+      title: Text("อุณหภูมิและความชื้น"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Status());
+        Navigator.push(context, route);
+      },
+    );
+  }
+  ListTile showLogdata() {
+    return ListTile(
+      leading: Icon(Icons.swap_vertical_circle),
+      title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Log());
         Navigator.push(context, route);
       },
     );
