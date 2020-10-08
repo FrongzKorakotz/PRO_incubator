@@ -26,7 +26,22 @@ class _ManualState extends State<Manual> {
           image: DecorationImage(
               image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
         ),
-    ),
+        child: Center(
+          child: Column(children: <Widget>[
+            SizedBox(height: 30,),
+            Text('การแนะนำการใช้งานแอพลิเคชั่น',textAlign: TextAlign.center,style: TextStyle(fontSize: 25,color: Colors.black)),
+            SizedBox(height: 20,),
+             Text('1.ผู้ใช้สามารถเลือกการฟักไข่ได้ทั้งแบบกำหนดเองและแบบอัตโนมัติ',textAlign: TextAlign.center,style: TextStyle(fontSize: 20,color: Colors.black)),
+             SizedBox(height: 20,),
+              Text('การเลือกแบบอัติโนมัติ',textAlign: TextAlign.center,style: TextStyle(fontSize: 25,color: Colors.black)),
+              SizedBox(height: 20,),
+              Text('- ผู้ใช้จะต้องเลือกตู้ที่จะฟักและเลือกสายพันธุ์ที่จะฟัก',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,color: Colors.black)),
+              SizedBox(height: 20,),
+              Text('- ผู้ใช้จะต้องกดตกลงเพื่อทำการยืนยันที่จะฟักในตู้ฟักไข่',textAlign: TextAlign.center,style: TextStyle(fontSize: 17,color: Colors.black)),
+             
+          ],),
+        ),
+      ),
     );
   }
     Drawer showDrawer() => Drawer(
