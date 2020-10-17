@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:incubator/screen/Control.dart';
+import 'package:incubator/screen/ControlM.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
 import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'package:incubator/screen/Chickdata.dart';
+import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Log extends StatefulWidget {
   @override
@@ -21,13 +26,10 @@ class _LogState extends State<Log> {
             backgroundColor: Colors.yellow[300]
       ),
       drawer: showDrawer(),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
-        ),
+      body: 
+      JsonListView(),
       
-    ),
+   
     );
   }
     Drawer showDrawer() => Drawer(
@@ -49,7 +51,7 @@ class _LogState extends State<Log> {
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Control());
+          MaterialPageRoute(builder: (value)=>ControlM());
         Navigator.push(context, route);
       },
     );
@@ -116,6 +118,87 @@ class _LogState extends State<Log> {
             MaterialPageRoute(builder: (value) => Status());
         Navigator.push(context, route);
       },
+    );
+  }
+}
+
+class Logdata {
+ String id;
+ String tTemp;
+ String hHum;
+ String dDate;
+ String dTime;
+  Logdata({
+    this.id,
+    this.tTemp,
+    this.hHum,
+    this.dDate,
+    this.dTime
+  });
+ 
+  factory Logdata.fromJson(Map<String, dynamic> json) {
+    return Logdata(
+      id: json['id'],
+      tTemp: json['Temp'],
+      hHum: json['Humidity'],
+      dDate: json['Datetable'],
+      dTime: json['Timetable']
+
+ 
+    );
+  }
+}
+
+
+class JsonListView extends StatefulWidget {
+
+  JsonListViewWidget createState() => JsonListViewWidget();
+
+}
+
+class JsonListViewWidget extends State<JsonListView> {
+
+  final String uri = 'http://192.168.2.40/nodemcu/esp8266mysql/log.php';
+
+  Future<List<Logdata>> fetchFruits() async {
+
+    var response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+
+      final items = json.decode(response.body).cast<Map<String, dynamic>>();
+
+      List<Logdata> listOfFruits = items.map<Logdata>((json) {
+        return Logdata.fromJson(json);
+      }).toList();
+
+      return listOfFruits;
+      }
+     else {
+      throw Exception('Failed to load data.');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Logdata>>(
+        future: fetchFruits(),
+        builder: (context, snapshot) {
+
+          if (!snapshot.hasData) return Center(
+            child: CircularProgressIndicator()
+            );
+
+          return ListView(
+            
+            children: snapshot.data
+                .map((data) => ListTile(
+                      title: Text("   "+data.dDate+"     "+data.dTime+"          "+data.tTemp+"                "+data.hHum),
+                      
+                    ))
+                .toList(),
+          );
+        },
     );
   }
 }

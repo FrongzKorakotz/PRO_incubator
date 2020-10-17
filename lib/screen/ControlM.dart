@@ -330,8 +330,8 @@ void writedata(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(tempEgg_id);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(humEgg_id);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(turnEgg_id);
-    dbref.child("Date").set({'DateNow':beforedateformat});
-    dbref.child("Date").set({'DateEnd':afterdateformat});
+    dbref.child("Date").child('DateNow').set(beforedateformat);
+    dbref.child("Date").child('DateEnd').set(afterdateformat);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
 
@@ -343,8 +343,8 @@ void writedata(){
     dbref.child("ConFigData").child('Incu_ID2').child('อุณหภูมิ').set(tempEgg_id);
     dbref.child("ConFigData").child('Incu_ID2').child('ความชื้น').set(humEgg_id);
     dbref.child("ConFigData").child('Incu_ID2').child('การกลับรอบไข่').set(turnEgg_id);
-    dbref.child("Date2").set({'DateNow':beforedateformat});
-    dbref.child("Date2").set({'DateEnd':afterdateformat});
+    dbref.child("Date2").child('DateNow').set(beforedateformat);
+    dbref.child("Date2").child('DateEnd').set(afterdateformat);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
 
@@ -356,8 +356,8 @@ void writedata(){
     dbref.child("ConFigData").child('Incu_ID3').child('อุณหภูมิ').set(tempEgg_id);
     dbref.child("ConFigData").child('Incu_ID3').child('ความชื้น').set(humEgg_id);
     dbref.child("ConFigData").child('Incu_ID3').child('การกลับรอบไข่').set(turnEgg_id);
-    dbref.child("Date3").set({'DateNow':beforedateformat});
-    dbref.child("Date3").set({'DateEnd':afterdateformat});
+    dbref.child("Date3").child('DateNow').set(beforedateformat);
+    dbref.child("Date3").child('DateEnd').set(afterdateformat);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
 

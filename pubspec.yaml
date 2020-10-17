@@ -39,6 +39,7 @@ dependencies:
   qr_code_tools: any
   intl: ^0.16.1
   flutter_local_notifications: ^2.0.0
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:

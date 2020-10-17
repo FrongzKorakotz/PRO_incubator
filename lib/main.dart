@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(theme: ThemeData(primaryColor: Colors.blue[900]),
     debugShowCheckedModeBanner: false,
       title: "incubator",
-      home: QRlogin(),
+      home: Control(),
     );
   }
 }
