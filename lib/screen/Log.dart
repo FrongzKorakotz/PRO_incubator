@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:incubator/screen/Control.dart';
 import 'package:incubator/screen/ControlM.dart';
+import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Status.dart';
-import 'package:incubator/screen/control.dart';
 import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'package:incubator/screen/Chickdata.dart';
-import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -38,6 +37,7 @@ class _LogState extends State<Log> {
           showIndata(),
           showCONTROL(),
           showalertchick(),
+          saveChickdata(),
           showChickdata(),
           showalertTH(),
           showManual()
@@ -78,6 +78,19 @@ class _LogState extends State<Log> {
         Navigator.pop(context);
         MaterialPageRoute route = 
           MaterialPageRoute(builder: (value)=>Alertth());
+        Navigator.push(context, route);
+      },
+    );
+  }
+
+    ListTile saveChickdata() {
+    return ListTile(
+      leading: Icon(Icons.info),
+      title: Text("บันทึกข้อมูลของสายพันธุ์"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => SaveChick());
         Navigator.push(context, route);
       },
     );

@@ -7,56 +7,68 @@ import 'package:incubator/screen/control.dart';
 import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Chickdata.dart';
+import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'dart:async';
-
 
 class Status3 extends StatefulWidget {
   @override
   _Status3State createState() => _Status3State();
 }
+
 class _Status3State extends State<Status3> {
-String _now;
-Timer _everySecond;
-@override
+  String _now;
+  Timer _everySecond;
+  @override
   void initState() {
     super.initState();
 
     // sets first value
     _now = DateTime.now().second.toString();
 
-    // defines a timer 
+    // defines a timer
     _everySecond = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
         _now = DateTime.now().second.toString();
       });
     });
   }
-  
-void choiceAction(String choice){
-    if(choice == ChooseStatus.Statuss1){
-      Navigator.push(context,
-      MaterialPageRoute(builder: (context) => Status()),  );
-    }else if(choice == ChooseStatus.Statuss2){
-      Navigator.push(context,
-      MaterialPageRoute(builder: (context) => Status2()),  );
-    }else if(choice == ChooseStatus.Statuss3){
-      Navigator.push(context,
-      MaterialPageRoute(builder: (context) => Status3()),  );
+
+  void choiceAction(String choice) {
+    if (choice == ChooseStatus.Statuss1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Status()),
+      );
+    } else if (choice == ChooseStatus.Statuss2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Status2()),
+      );
+    } else if (choice == ChooseStatus.Statuss3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Status3()),
+      );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
         title: Container(
-            margin: EdgeInsets.only(left: 60.0), child: Text("สถานะของตู้ฟักไข่ตู้ที่ 3",style: TextStyle(color: Colors.blueGrey[400]),)),
-            backgroundColor: Colors.yellow[300],
+            margin: EdgeInsets.only(left: 60.0),
+            child: Text(
+              "สถานะของตู้ฟักไข่ตู้ที่ 3",
+              style: TextStyle(color: Colors.blueGrey[400]),
+            )),
+        backgroundColor: Colors.yellow[300],
         actions: <Widget>[
-            PopupMenuButton<String>(
-              onSelected: choiceAction,
-              itemBuilder: (BuildContext context){
-              return ChooseStatus.choices.map((String choice){
+          PopupMenuButton<String>(
+            onSelected: choiceAction,
+            itemBuilder: (BuildContext context) {
+              return ChooseStatus.choices.map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -65,7 +77,7 @@ void choiceAction(String choice){
             },
           )
         ],
-        ),
+      ),
       drawer: showDrawer(),
       body: Container(
         decoration: BoxDecoration(
@@ -73,80 +85,117 @@ void choiceAction(String choice){
               image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
         ),
         child: Center(
-          child: Column(         
-            children: <Widget>[
-               
-              SizedBox(height: 50,),
-              Stack(
+            child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 50,
+            ),
+            Stack(
+              alignment: Alignment.topLeft,
+              children: [
+                Text('   Temputarure:',
+                    style: TextStyle(
+                        fontSize: 50,
+                        color: Colors.red[300],
+                        shadows: [
+                          Shadow(
+                              // bottomLeft
+                              offset: Offset(-1.5, -1.5),
+                              color: Colors.white),
+                          Shadow(
+                              // bottomRight
+                              offset: Offset(1.5, -1.5),
+                              color: Colors.white),
+                          Shadow(
+                              // topRight
+                              offset: Offset(1.5, 1.5),
+                              color: Colors.white),
+                          Shadow(
+                              // topLeft
+                              offset: Offset(-1.5, 1.5),
+                              color: Colors.white),
+                        ])),
+                Image.asset(
+                  "lib/img/theometer.png",
+                  height: 70,
+                  width: 40,
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Text(tempupdat3.toString() + " °C",
+                    style: TextStyle(fontSize: 50))
+              ],
+            ),
+            SizedBox(height: 20),
+            Stack(
+                overflow: Overflow.clip,
                 alignment: Alignment.topLeft,
                 children: [
-                  
-                  Text('   Temputarure:',style: TextStyle(fontSize: 50,color: Colors.red[300],shadows: [
-        Shadow( // bottomLeft
-          offset: Offset(-1.5, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // bottomRight
-          offset: Offset(1.5, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // topRight
-          offset: Offset(1.5, 1.5),
-          color: Colors.white
-        ),
-        Shadow( // topLeft
-          offset: Offset(-1.5, 1.5),
-          color: Colors.white
-        ),
-      ])),
-             Image.asset("lib/img/theometer.png",height: 70,width: 40,)
-                ],
-              ),
-              Column(
-          children: [
-             Text(tempupdat3.toString()+" °C",style: TextStyle(fontSize: 50))
-              ],
-           ),
-              SizedBox(height:20),
-              Stack(
-          overflow: Overflow.clip,
-           alignment: Alignment.topLeft,     
-          children: [
-            Text('    Humudity:',style: TextStyle(fontSize: 50,color: Colors.blue[300],shadows: [
-        Shadow( // bottomLeft
-          offset: Offset(-1.5, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // bottomRight
-          offset: Offset(1.5, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // topRight
-          offset: Offset(1.5, 1.5),
-          color: Colors.white
-        ),
-        Shadow( // topLeft
-          offset: Offset(-1.5, 1.5),
-          color: Colors.white
-        ),
-      ])),
-            Image.asset("lib/img/humidity.png",height: 90,width: 40,)
-              ]),
-       Text(humupdat3.toString()+" %",style: TextStyle(fontSize: 50)), 
-       SizedBox(height: 30,),
-       Text('วันที่เริ่มฟัก',style: TextStyle(fontSize: 30),),
-            SizedBox(height: 20,),
-            Text(dateNow3,style: TextStyle(fontSize: 20),),
-            SizedBox(height: 20,),
-            Text('วันสิ้นสุดการฟัก',style: TextStyle(fontSize: 30),),
-            SizedBox(height: 20,),
-            Text(dateEnd3,style: TextStyle(fontSize: 20),)],
-          )
-        ),
-        ), 
+                  Text('    Humudity:',
+                      style: TextStyle(
+                          fontSize: 50,
+                          color: Colors.blue[300],
+                          shadows: [
+                            Shadow(
+                                // bottomLeft
+                                offset: Offset(-1.5, -1.5),
+                                color: Colors.white),
+                            Shadow(
+                                // bottomRight
+                                offset: Offset(1.5, -1.5),
+                                color: Colors.white),
+                            Shadow(
+                                // topRight
+                                offset: Offset(1.5, 1.5),
+                                color: Colors.white),
+                            Shadow(
+                                // topLeft
+                                offset: Offset(-1.5, 1.5),
+                                color: Colors.white),
+                          ])),
+                  Image.asset(
+                    "lib/img/humidity.png",
+                    height: 90,
+                    width: 40,
+                  )
+                ]),
+            Text(humupdat3.toString() + " %", style: TextStyle(fontSize: 50)),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'วันที่เริ่มฟัก',
+              style: TextStyle(fontSize: 30),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              dateNow3,
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'วันสิ้นสุดการฟัก',
+              style: TextStyle(fontSize: 30),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              dateEnd3,
+              style: TextStyle(fontSize: 20),
+            )
+          ],
+        )),
+      ),
     );
   }
-  
+
   Drawer showDrawer() => Drawer(
           child: ListView(
         children: <Widget>[
@@ -154,9 +203,9 @@ void choiceAction(String choice){
           showalertchick(),
           showLogdata(),
           showalertTH(),
+          saveChickdata(),
           showChickdata(),
           showManual()
-          
         ],
       ));
 
@@ -166,8 +215,8 @@ void choiceAction(String choice){
       title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Control());
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Control());
         Navigator.push(context, route);
       },
     );
@@ -179,8 +228,8 @@ void choiceAction(String choice){
       title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
       onTap: () {
         Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertchick());
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Alertchick());
         Navigator.push(context, route);
       },
     );
@@ -192,8 +241,21 @@ void choiceAction(String choice){
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertth());
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Alertth());
+        Navigator.push(context, route);
+      },
+    );
+  }
+
+  ListTile saveChickdata() {
+    return ListTile(
+      leading: Icon(Icons.info),
+      title: Text("บันทึกข้อมูลของสายพันธุ์"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => SaveChick());
         Navigator.push(context, route);
       },
     );
@@ -205,8 +267,8 @@ void choiceAction(String choice){
       title: Text("ข้อมูลของสายพันธุ์"),
       onTap: () {
         Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Chickdata());
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Chickdata());
         Navigator.push(context, route);
       },
     );
@@ -218,44 +280,40 @@ void choiceAction(String choice){
       title: Text("คู่มือการใช้งาน"),
       onTap: () {
         Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Manual());
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Manual());
         Navigator.push(context, route);
       },
     );
   }
+
   ListTile showLogdata() {
     return ListTile(
       leading: Icon(Icons.swap_vertical_circle),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
-        MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => Log());
+        MaterialPageRoute route = MaterialPageRoute(builder: (value) => Log());
         Navigator.push(context, route);
       },
     );
   }
 }
 
-class ChooseStatus{
+class ChooseStatus {
   static const String Statuss1 = 'ตู้ที่1';
   static const String Statuss2 = 'ตู้ที่2';
   static const String Statuss3 = 'ตู้ที่3';
 
-  static const List<String> choices = <String>[
-    Statuss1,
-    Statuss2,
-    Statuss3
-  ];
+  static const List<String> choices = <String>[Statuss1, Statuss2, Statuss3];
 }
 
-void choiceAction(String choice){
-    if(choice == ChooseStatus.Statuss1){
-      print('ตู้ที่1');
-    }else if(choice == ChooseStatus.Statuss2){
-      print('ตู้ที่2');
-    }else if(choice == ChooseStatus.Statuss3){
-      print('ตู้ที่3');
-    }
+void choiceAction(String choice) {
+  if (choice == ChooseStatus.Statuss1) {
+    print('ตู้ที่1');
+  } else if (choice == ChooseStatus.Statuss2) {
+    print('ตู้ที่2');
+  } else if (choice == ChooseStatus.Statuss3) {
+    print('ตู้ที่3');
   }
+}
