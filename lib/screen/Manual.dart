@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:incubator/screen/control.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Status.dart';
@@ -49,7 +48,6 @@ class _ManualState extends State<Manual> {
         children: <Widget>[
           showIndata(),
           showCONTROL(),
-          showalertchick(),
           showLogdata(),
           showalertTH(),
           showChickdata(),
@@ -64,19 +62,6 @@ class _ManualState extends State<Manual> {
         Navigator.pop(context);
         MaterialPageRoute route = 
           MaterialPageRoute(builder: (value)=>Control());
-        Navigator.push(context, route);
-      },
-    );
-  }
-
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertchick());
         Navigator.push(context, route);
       },
     );

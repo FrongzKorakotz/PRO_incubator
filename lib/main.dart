@@ -8,10 +8,19 @@ import 'package:incubator/data/firebase.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+Future<dynamic> _onBackgroundMessage(Map<String, dynamic> message) async {
+  debugPrint('On background message $message');
+  return Future<void>.value();
+}
+Future<void> main() async{
+  
   const fiveSeconds = const Duration(seconds: 1);
-  const threeMin = const Duration(seconds: 180);
+  const threeMin = const Duration(seconds: 2000);
   Timer.periodic(fiveSeconds, (Timer t) => readatatemp());
   Timer.periodic(fiveSeconds, (Timer t) => readatahum());
   Timer.periodic(fiveSeconds, (Timer t) => readatatemp2());
@@ -33,7 +42,10 @@ void main() {
   Timer.periodic(fiveSeconds, (Timer t) => passQrR3());
   Intl.defaultLocale = 'th';
   initializeDateFormatting();
+  Timer.periodic(threeMin, (Timer t) => openapp());
   runApp(MyApp());
+  var platform = MethodChannel('flutterthailand.incubator/info');
+  await platform.invokeMethod('setnotificationManager');
 }
 class MyApp extends StatelessWidget {
   @override
@@ -45,4 +57,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

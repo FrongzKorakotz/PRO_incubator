@@ -40,7 +40,9 @@ dependencies:
   intl: ^0.16.1
   flutter_local_notifications: ^2.0.0
   http: ^0.12.2
-
+  image_picker: ^0.6.3+1
+  firebase_messaging: ^7.0.3
+  path_provider: 0.5.0+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

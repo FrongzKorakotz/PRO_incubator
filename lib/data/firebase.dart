@@ -194,3 +194,12 @@ void passQrR3(){
       //print(qrFormatdata1);
     });
 }
+void openapp(){
+  tempRef.set("off");
+  humRef.set("off");
+   tempRef2.set("off");
+  humRef2.set("off");
+   tempRef3.set("off");
+  humRef3.set("off");
+
+}

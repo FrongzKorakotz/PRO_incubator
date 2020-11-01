@@ -3,7 +3,6 @@ import 'package:incubator/screen/Control.dart';
 import 'package:incubator/screen/ControlM.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'package:incubator/screen/Chickdata.dart';
@@ -37,7 +36,6 @@ class _LogState extends State<Log> {
         children: <Widget>[
           showIndata(),
           showCONTROL(),
-          showalertchick(),
           showChickdata(),
           showalertTH(),
           showManual()
@@ -57,18 +55,7 @@ class _LogState extends State<Log> {
     );
   }
 
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertchick());
-        Navigator.push(context, route);
-      },
-    );
-  }
+
 
   ListTile showalertTH() {
     return ListTile(
@@ -158,7 +145,7 @@ class JsonListView extends StatefulWidget {
 
 class JsonListViewWidget extends State<JsonListView> {
 
-  final String uri = 'http://192.168.2.40/nodemcu/esp8266mysql/log.php';
+  final String uri = 'http://192.168.2.36/nodemcu/esp8266mysql/log.php';
 
   Future<List<Logdata>> fetchFruits() async {
 

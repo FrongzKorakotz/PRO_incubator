@@ -4,10 +4,10 @@ import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Status2.dart';
 import 'package:incubator/screen/Status3.dart';
 import 'package:incubator/screen/control.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Manual.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'dart:async';
 
 
@@ -17,12 +17,12 @@ class Status extends StatefulWidget {
 }
   
 class _StatusState extends State<Status> {
+FirebaseMessaging firebaseMessaging = FirebaseMessaging();
 String _now;
 Timer _everySecond;
 @override
   void initState() {
     super.initState();
-
     // sets first value
     _now = DateTime.now().second.toString();
 
@@ -151,7 +151,6 @@ void choiceAction(String choice){
           child: ListView(
         children: <Widget>[
           showCONTROL(),
-          showalertchick(),
           showLogdata(),
           showalertTH(),
           showChickdata(),
@@ -168,19 +167,6 @@ void choiceAction(String choice){
         Navigator.pop(context);
         MaterialPageRoute route = 
           MaterialPageRoute(builder: (value)=>Control());
-        Navigator.push(context, route);
-      },
-    );
-  }
-
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertchick());
         Navigator.push(context, route);
       },
     );

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class Chickdata extends StatefulWidget {
   @override
@@ -32,10 +33,13 @@ class _ChickdataState extends State<Chickdata> {
     Drawer showDrawer() => Drawer(
           child: ListView(
         children: <Widget>[
+          SizedBox(height: 20,),
           showIndata(),
+          SizedBox(height: 20,),
           showCONTROL(),
-          showalertchick(),
+          SizedBox(height: 20,),
           showalertTH(),
+          SizedBox(height: 20,),  
           showManual()
         ],
       ));
@@ -53,18 +57,6 @@ class _ChickdataState extends State<Chickdata> {
     );
   }
 
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertchick());
-        Navigator.push(context, route);
-      },
-    );
-  }
 
   ListTile showalertTH() {
     return ListTile(

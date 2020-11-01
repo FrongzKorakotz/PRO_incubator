@@ -2,82 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
-import 'package:incubator/screen/Alertchick.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:incubator/main.dart';
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 class Alertth extends StatefulWidget {
   @override
   _AlertthState createState() => _AlertthState();
 }
 
 class _AlertthState extends State<Alertth> {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  new FlutterLocalNotificationsPlugin();
-  var initializationSettingsAndroid;
-  var initializationSettingsIOS;
-  var initializationSettings;
-
-  void _showNotification() async {
-    await _demoNotification();
-  }
-
-  Future<void> _demoNotification() async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'channel_ID', 'channel name', 'channel description',
-        importance: Importance.max,
-        priority: Priority.high,
-        ticker: 'test ticker');
-
-    var iOSChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics = NotificationDetails();
-
-    await flutterLocalNotificationsPlugin.show(0, 'Hello, buddy',
-        'A message from flutter buddy', platformChannelSpecifics,
-        payload: 'test oayload');
-  }
 
   @override
   void initState() {
     super.initState();
-    initializationSettingsAndroid =
-        new AndroidInitializationSettings('app_icon');
-    initializationSettingsIOS = new IOSInitializationSettings(
-        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: onSelectNotification);
+     _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        _printMsg(message);
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        _printMsg(message);
+      },
+      onResume: (Map<String, dynamic> message) async {
+        _printMsg(message);
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(
+            sound: true, badge: true, alert: true, provisional: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {});
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      print(token);
+    });
+    _firebaseMessaging.subscribeToTopic('info_topic');
+  }
+   void _printMsg(Map<String, dynamic> message) {
+    print(message.toString());
   }
 
-  Future onSelectNotification(String payload) async {
-    if (payload != null) {
-      debugPrint('Notification payload: $payload');
-    }
-    await Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => new Status()));
-  }
-
-  Future onDidReceiveLocalNotification(
-      int id, String title, String body, String payload) async {
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              title: Text(title),
-              content: Text(body),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: Text('Ok'),
-                  onPressed: () async {
-                    Navigator.of(context, rootNavigator: true).pop();
-                    await Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Status()));
-                  },
-                )
-              ],
-            ));
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,10 +63,7 @@ class _AlertthState extends State<Alertth> {
               image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
         ),
         child: Center(child: Column(children: <Widget>[
-          RawMaterialButton(
-            onPressed: _showNotification,
-            fillColor: Colors.blue,
-            child: Text('Raw Material Button', style: TextStyle(color: Colors.white),))
+  
         ],),),
     ),
     );
@@ -106,7 +73,6 @@ class _AlertthState extends State<Alertth> {
         children: <Widget>[
           showIndata(),
           showCONTROL(),
-          showalertchick(),
           showLogdata(),
           showChickdata(),
           showManual()
@@ -126,18 +92,6 @@ class _AlertthState extends State<Alertth> {
     );
   }
 
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route = 
-          MaterialPageRoute(builder: (value)=>Alertchick());
-        Navigator.push(context, route);
-      },
-    );
-  }
 
   ListTile showChickdata() {
     return ListTile(

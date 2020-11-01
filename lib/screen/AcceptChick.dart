@@ -1,7 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:incubator/data/firebase.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Log.dart';
@@ -147,7 +146,6 @@ class _AcceptChickState extends State<AcceptChick> {
           child: ListView(
         children: <Widget>[
           showIndata(),
-          showalertchick(),
           showalertTH(),
           showLogdata(),
           showChickdata(),
@@ -155,18 +153,6 @@ class _AcceptChickState extends State<AcceptChick> {
         ],
       ));
 
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => Alertchick());
-        Navigator.push(context, route);
-      },
-    );
-  }
 
   ListTile showalertTH() {
     return ListTile(

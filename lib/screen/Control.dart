@@ -1,7 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:incubator/data/firebase.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/ControlM.dart';
@@ -12,6 +11,7 @@ import 'package:dropdownfield/dropdownfield.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 var beforedateformat = '';
 var afterdateformat = '';
@@ -58,7 +58,6 @@ Timer _everySecond;
 @override
   void initState() {
     super.initState();
-
     // sets first value
     _now = DateTime.now().second.toString();
 
@@ -69,6 +68,7 @@ Timer _everySecond;
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,26 +209,12 @@ Timer _everySecond;
           child: ListView(
         children: <Widget>[
           showIndata(),
-          showalertchick(),
           showalertTH(),
           showLogdata(),
           showChickdata(),
           showManual()
         ],
       ));
-
-  ListTile showalertchick() {
-    return ListTile(
-      leading: Icon(Icons.alarm),
-      title: Text("แจ้งเตือนเมื่อลูกไก่เกิด"),
-      onTap: () {
-        Navigator.pop(context);
-        MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => Alertchick());
-        Navigator.push(context, route);
-      },
-    );
-  }
 
   ListTile showalertTH() {
     return ListTile(
