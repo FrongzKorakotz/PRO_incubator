@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:incubator/screen/Log.dart';
+import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -74,6 +75,7 @@ class _AlertthState extends State<Alertth> {
           showIndata(),
           showCONTROL(),
           showLogdata(),
+          saveChickdata(),
           showChickdata(),
           showManual()
         ],
@@ -92,6 +94,19 @@ class _AlertthState extends State<Alertth> {
     );
   }
 
+
+  ListTile saveChickdata() {
+    return ListTile(
+      leading: Icon(Icons.info),
+      title: Text("บันทึกข้อมูลของสายพันธุ์"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => SaveChick());
+        Navigator.push(context, route);
+      },
+    );
+  }
 
   ListTile showChickdata() {
     return ListTile(

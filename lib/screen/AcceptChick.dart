@@ -5,6 +5,7 @@ import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Manual.dart';
+import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/Control.dart';
 final dbref = FirebaseDatabase.instance.reference();
@@ -148,6 +149,7 @@ class _AcceptChickState extends State<AcceptChick> {
           showIndata(),
           showalertTH(),
           showLogdata(),
+          saveChickdata(),
           showChickdata(),
           showManual()
         ],
@@ -162,6 +164,19 @@ class _AcceptChickState extends State<AcceptChick> {
         Navigator.pop(context);
         MaterialPageRoute route =
             MaterialPageRoute(builder: (value) => Alertth());
+        Navigator.push(context, route);
+      },
+    );
+  }
+
+    ListTile saveChickdata() {
+    return ListTile(
+      leading: Icon(Icons.info),
+      title: Text("บันทึกข้อมูลของสายพันธุ์"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => SaveChick());
         Navigator.push(context, route);
       },
     );

@@ -6,6 +6,7 @@ import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/ControlM.dart';
 import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Manual.dart';
+import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:dropdownfield/dropdownfield.dart';
 import 'dart:async';
@@ -211,6 +212,7 @@ Timer _everySecond;
           showIndata(),
           showalertTH(),
           showLogdata(),
+          saveChickdata(),
           showChickdata(),
           showManual()
         ],
@@ -224,6 +226,19 @@ Timer _everySecond;
         Navigator.pop(context);
         MaterialPageRoute route =
             MaterialPageRoute(builder: (value) => Alertth());
+        Navigator.push(context, route);
+      },
+    );
+  }
+
+    ListTile saveChickdata() {
+    return ListTile(
+      leading: Icon(Icons.info),
+      title: Text("บันทึกข้อมูลของสายพันธุ์"),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => SaveChick());
         Navigator.push(context, route);
       },
     );
