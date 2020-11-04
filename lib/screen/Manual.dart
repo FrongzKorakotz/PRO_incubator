@@ -6,6 +6,7 @@ import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/Log.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Manual extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _ManualState extends State<Manual> {
 
   ListTile showCONTROL() {
     return ListTile(
-      leading: Icon(Icons.settings),
+      leading: Icon(MdiIcons.tableSettings),
       title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
@@ -72,7 +73,7 @@ class _ManualState extends State<Manual> {
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -110,7 +111,7 @@ class _ManualState extends State<Manual> {
   }
       ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -122,7 +123,7 @@ class _ManualState extends State<Manual> {
   }
   ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

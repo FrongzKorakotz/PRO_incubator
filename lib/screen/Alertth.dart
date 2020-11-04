@@ -14,6 +14,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:incubator/main.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 class Alertth extends StatefulWidget {
@@ -211,7 +212,7 @@ class _AlertthState extends State<Alertth> {
 
   ListTile showCONTROL() {
     return ListTile(
-      leading: Icon(Icons.settings),
+      leading: Icon(MdiIcons.tableSettings),
       title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
@@ -263,7 +264,7 @@ class _AlertthState extends State<Alertth> {
   }
     ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -275,7 +276,7 @@ class _AlertthState extends State<Alertth> {
   }
   ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

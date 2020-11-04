@@ -21,7 +21,7 @@ Future<dynamic> _onBackgroundMessage(Map<String, dynamic> message) async {
 Future<void> main() async{
   
   const fiveSeconds = const Duration(seconds: 1);
-  const threeMin = const Duration(seconds: 2000);
+  const threeMin = const Duration(seconds: 20000);
   Timer.periodic(fiveSeconds, (Timer t) => readatatemp());
   Timer.periodic(fiveSeconds, (Timer t) => readatahum());
   Timer.periodic(fiveSeconds, (Timer t) => readatatemp2());
@@ -41,6 +41,11 @@ Future<void> main() async{
   Timer.periodic(fiveSeconds, (Timer t) => passQrR());
   Timer.periodic(fiveSeconds, (Timer t) => passQrR2());
   Timer.periodic(fiveSeconds, (Timer t) => passQrR3());
+  Timer.periodic(fiveSeconds, (Timer t) => fanrun());
+  Timer.periodic(fiveSeconds, (Timer t) => lightrun());
+  Timer.periodic(fiveSeconds, (Timer t) => pumpinrun());
+  Timer.periodic(fiveSeconds, (Timer t) => pumpoutrun());
+
   Intl.defaultLocale = 'th';
   initializeDateFormatting();
   Timer.periodic(threeMin, (Timer t) => openapp());

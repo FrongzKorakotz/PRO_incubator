@@ -6,6 +6,7 @@ import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Chickdata extends StatefulWidget {
   @override
@@ -46,7 +47,7 @@ class _ChickdataState extends State<Chickdata> {
 
   ListTile showCONTROL() {
     return ListTile(
-      leading: Icon(Icons.settings),
+      leading: Icon(MdiIcons.tableSettings),
       title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
@@ -60,7 +61,7 @@ class _ChickdataState extends State<Chickdata> {
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -85,7 +86,7 @@ class _ChickdataState extends State<Chickdata> {
   }
     ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -97,7 +98,7 @@ class _ChickdataState extends State<Chickdata> {
   }
   ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

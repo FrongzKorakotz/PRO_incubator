@@ -13,6 +13,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 var beforedateformat = '';
 var afterdateformat = '';
@@ -220,7 +221,7 @@ Timer _everySecond;
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -259,7 +260,7 @@ Timer _everySecond;
 
     ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -284,7 +285,7 @@ Timer _everySecond;
   }
   ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -304,77 +305,77 @@ void checkchick(){
   if (chick_id == "ไก่ดำ , ไก่แจ้ , ไก่ชน" ){
     day = '21';
     temp = '37.5';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjae.JPG";
     
   }
   else if(chick_id == "ไก่งวง") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjung.JPG";
     
   }
   else if(chick_id == "นกฟินซ์") {
     day = '14';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/bfint.JPG";
   
   }
   else if(chick_id == "นกแก้วพันธุ์เล็ก") {
     day = '18';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/smallParrot.JPG";
  
   }
   else if(chick_id == "นกแก้วอเมซอน") {
     day = '24';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/amasonParrot.JPG";
  
   }
   else if(chick_id == "นกแก้วมาคอร์") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/marcorParrot.JPG";
  
   }
   else if(chick_id == "นกเลิฟเบิร์ด") {
     day = '22';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/lovebird.JPG";
 
   }
   else if(chick_id == "เป็ดทุกสายพันธุ์") {
     day = '28';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/duck.JPG";
  
   }
   else if(chick_id == "ห่านทุกสายพันธุ์") {
     day = '28';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/goose.JPG";
 
   }
   else if(chick_id == "นกกระทา") {
     day = '16';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/panbird.JPG";
 
   }
   else if(chick_id == "นกยูง") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/peacock.JPG";
 
   }
@@ -387,7 +388,7 @@ void acceptchick(){
   if (chick_id == "ไก่ดำ , ไก่แจ้ , ไก่ชน" && inCu_id == "ตู้ที่ 1"){
     day = '21';
     temp = '37.5';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjae.JPG";
     dbref.child("ChickID").set({'data':'ไก่ดำ , ไก่แจ้ , ไก่ชน'});
     afteraccept = now.add(new Duration(days: 21));
@@ -395,6 +396,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(19);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -403,7 +405,7 @@ void acceptchick(){
   else if(chick_id == "ไก่งวง" && inCu_id == "ตู้ที่ 1") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjung.JPG";
     dbref.child("ChickID").set({'data':'ไก่งวง'});
     afteraccept = now.add(new Duration(days: 28));
@@ -411,6 +413,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(26);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -419,7 +422,7 @@ void acceptchick(){
   else if(chick_id == "นกฟินซ์"&& inCu_id == "ตู้ที่ 1") {
     day = '14';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/bfint.JPG";
     dbref.child("ChickID").set({'data':'นกฟินซ์'});
     afteraccept = now.add(new Duration(days: 14));
@@ -427,6 +430,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(12);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -435,7 +439,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วพันธุ์เล็ก"&& inCu_id == "ตู้ที่ 1") {
     day = '18';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/smallParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วพันธุ์เล็ก'});
     afteraccept = now.add(new Duration(days: 18));
@@ -443,6 +447,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(16);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -451,7 +456,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วอเมซอน"&& inCu_id == "ตู้ที่ 1") {
     day = '24';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/amasonParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วอเมซอน'});
     afteraccept = now.add(new Duration(days: 24));
@@ -459,6 +464,7 @@ void acceptchick(){
      dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(22);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -467,7 +473,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วมาคอร์"&& inCu_id == "ตู้ที่ 1") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/marcorParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วมาคอร์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -475,6 +481,7 @@ void acceptchick(){
      dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(26);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -483,7 +490,7 @@ void acceptchick(){
   else if(chick_id == "นกเลิฟเบิร์ด"&& inCu_id == "ตู้ที่ 1") {
     day = '22';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/lovebird.JPG";
     dbref.child("ChickID").set({'data':'นกเลิฟเบิร์ด'});
     afteraccept = now.add(new Duration(days: 22));
@@ -491,6 +498,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(20);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -499,7 +507,7 @@ void acceptchick(){
   else if(chick_id == "เป็ดทุกสายพันธุ์"&& inCu_id == "ตู้ที่ 1") {
     day = '28';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/duck.JPG";
     dbref.child("ChickID").set({'data':'เป็ดทุกสายพันธุ์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -507,6 +515,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(26);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -515,7 +524,7 @@ void acceptchick(){
   else if(chick_id == "ห่านทุกสายพันธุ์"&& inCu_id == "ตู้ที่ 1") {
     day = '28';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/goose.JPG";
     dbref.child("ChickID").set({'data':'ห่านทุกสายพันธุ์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -523,6 +532,7 @@ void acceptchick(){
    dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(26);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -531,7 +541,7 @@ void acceptchick(){
   else if(chick_id == "นกกระทา"&& inCu_id == "ตู้ที่ 1") {
     day = '16';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/panbird.JPG";
     dbref.child("ChickID").set({'data':'นกกระทา'});
     afteraccept = now.add(new Duration(days: 16));
@@ -539,6 +549,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(21);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -547,7 +558,7 @@ void acceptchick(){
   else if(chick_id == "นกยูง"&& inCu_id == "ตู้ที่ 1") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/peacock.JPG";
     dbref.child("ChickID").set({'data':'นกยูง'});
     afteraccept = now.add(new Duration(days: 28));
@@ -555,6 +566,7 @@ void acceptchick(){
     dbref.child("ConFigData").child('Incu_ID1').child('อุณหภูมิ').set(temp);
     dbref.child("ConFigData").child('Incu_ID1').child('ความชื้น').set(hum);
     dbref.child("ConFigData").child('Incu_ID1').child('การกลับรอบไข่').set(3);
+    dbref.child("ConFigData").child('Incu_ID1').child('หยุดกลับรอบไข่').set(26);
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     dbref.child("Date").child('DateNow').set(beforedateformat);
@@ -563,7 +575,7 @@ void acceptchick(){
   else if (chick_id == "ไก่ดำ , ไก่แจ้ , ไก่ชน" && inCu_id == "ตู้ที่ 2"){
     day = '21';
     temp = '37.5';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjae.JPG";
     dbref.child("ChickID").set({'data':'ไก่ดำ , ไก่แจ้ , ไก่ชน'});
     dbref.child("ChickID").set({'data':'ไก่ดำ , ไก่แจ้ , ไก่ชน'});
@@ -580,7 +592,7 @@ void acceptchick(){
   else if(chick_id == "ไก่งวง" && inCu_id == "ตู้ที่ 2") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjung.JPG";
     dbref.child("ChickID").set({'data':'ไก่งวง'});
     afteraccept = now.add(new Duration(days: 28));
@@ -596,7 +608,7 @@ void acceptchick(){
   else if(chick_id == "นกฟินซ์"&& inCu_id == "ตู้ที่ 2") {
     day = '14';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/bfint.JPG";
     dbref.child("ChickID").set({'data':'นกฟินซ์'});
     afteraccept = now.add(new Duration(days: 14));
@@ -612,7 +624,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วพันธุ์เล็ก"&& inCu_id == "ตู้ที่ 2") {
     day = '18';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/smallParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วพันธุ์เล็ก'});
     afteraccept = now.add(new Duration(days: 18));
@@ -628,7 +640,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วอเมซอน"&& inCu_id == "ตู้ที่ 2") {
     day = '24';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/amasonParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วอเมซอน'});
     afteraccept = now.add(new Duration(days: 24));
@@ -644,7 +656,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วมาคอร์"&& inCu_id == "ตู้ที่ 2") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/marcorParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วมาคอร์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -660,7 +672,7 @@ void acceptchick(){
   else if(chick_id == "นกเลิฟเบิร์ด"&& inCu_id == "ตู้ที่ 2") {
     day = '22';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/lovebird.JPG";
     dbref.child("ChickID").set({'data':'นกเลิฟเบิร์ด'});
     afteraccept = now.add(new Duration(days: 22));
@@ -676,7 +688,7 @@ void acceptchick(){
   else if(chick_id == "เป็ดทุกสายพันธุ์"&& inCu_id == "ตู้ที่ 2") {
     day = '28';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/duck.JPG";
     dbref.child("ChickID").set({'data':'เป็ดทุกสายพันธุ์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -692,7 +704,7 @@ void acceptchick(){
   else if(chick_id == "ห่านทุกสายพันธุ์"&& inCu_id == "ตู้ที่ 2") {
     day = '28';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/goose.JPG";
     dbref.child("ChickID").set({'data':'ห่านทุกสายพันธุ์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -708,7 +720,7 @@ void acceptchick(){
   else if(chick_id == "นกกระทา"&& inCu_id == "ตู้ที่ 2") {
     day = '16';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/panbird.JPG";
     dbref.child("ChickID").set({'data':'นกกระทา'});
     afteraccept = now.add(new Duration(days: 16));
@@ -724,7 +736,7 @@ void acceptchick(){
   else if(chick_id == "นกยูง"&& inCu_id == "ตู้ที่ 2") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/peacock.JPG";
     dbref.child("ChickID").set({'data':'นกยูง'});
     afteraccept = now.add(new Duration(days: 28));
@@ -740,7 +752,7 @@ void acceptchick(){
   else if (chick_id == "ไก่ดำ , ไก่แจ้ , ไก่ชน" && inCu_id == "ตู้ที่ 3"){
     day = '21';
     temp = '37.5';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjae.JPG";
     dbref.child("ChickID").set({'data':'ไก่ดำ , ไก่แจ้ , ไก่ชน'});
     dbref.child("ChickID").set({'data':'ไก่ดำ , ไก่แจ้ , ไก่ชน'});
@@ -759,7 +771,7 @@ void acceptchick(){
   else if(chick_id == "ไก่งวง" && inCu_id == "ตู้ที่ 3") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/chickjung.JPG";
     dbref.child("ChickID").set({'data':'ไก่งวง'});
     afteraccept = now.add(new Duration(days: 28));
@@ -775,7 +787,7 @@ void acceptchick(){
   else if(chick_id == "นกฟินซ์"&& inCu_id == "ตู้ที่ 3") {
     day = '14';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/bfint.JPG";
     dbref.child("ChickID").set({'data':'นกฟินซ์'});
     afteraccept = now.add(new Duration(days: 14));
@@ -791,7 +803,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วพันธุ์เล็ก"&& inCu_id == "ตู้ที่ 3") {
     day = '18';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/smallParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วพันธุ์เล็ก'});
     afteraccept = now.add(new Duration(days: 18));
@@ -807,7 +819,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วอเมซอน"&& inCu_id == "ตู้ที่ 3") {
     day = '24';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/amasonParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วอเมซอน'});
     afteraccept = now.add(new Duration(days: 24));
@@ -823,7 +835,7 @@ void acceptchick(){
   else if(chick_id == "นกแก้วมาคอร์"&& inCu_id == "ตู้ที่ 3") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/marcorParrot.JPG";
     dbref.child("ChickID").set({'data':'นกแก้วมาคอร์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -839,7 +851,7 @@ void acceptchick(){
   else if(chick_id == "นกเลิฟเบิร์ด"&& inCu_id == "ตู้ที่ 3") {
     day = '22';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/lovebird.JPG";
     dbref.child("ChickID").set({'data':'นกเลิฟเบิร์ด'});
     afteraccept = now.add(new Duration(days: 22));
@@ -855,7 +867,7 @@ void acceptchick(){
   else if(chick_id == "เป็ดทุกสายพันธุ์"&& inCu_id == "ตู้ที่ 3") {
     day = '28';
     temp = '37.5';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/duck.JPG";
     dbref.child("ChickID").set({'data':'เป็ดทุกสายพันธุ์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -871,7 +883,7 @@ void acceptchick(){
   else if(chick_id == "ห่านทุกสายพันธุ์"&& inCu_id == "ตู้ที่ 3") {
     day = '28';
     temp = '37.3';
-    hum = '45-50';
+    hum = '50';
     picchick = "lib/img/goose.JPG";
     dbref.child("ChickID").set({'data':'ห่านทุกสายพันธุ์'});
     afteraccept = now.add(new Duration(days: 28));
@@ -887,7 +899,7 @@ void acceptchick(){
   else if(chick_id == "นกกระทา"&& inCu_id == "ตู้ที่ 3") {
     day = '16';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/panbird.JPG";
     dbref.child("ChickID").set({'data':'นกกระทา'});
     afteraccept = now.add(new Duration(days: 16));
@@ -903,7 +915,7 @@ void acceptchick(){
   else if(chick_id == "นกยูง"&& inCu_id == "ตู้ที่ 3") {
     day = '28';
     temp = '37.3';
-    hum = '50-60';
+    hum = '60';
     picchick = "lib/img/peacock.JPG";
     dbref.child("ChickID").set({'data':'นกยูง'});
     afteraccept = now.add(new Duration(days: 28));

@@ -8,6 +8,7 @@ import 'package:incubator/screen/Manual.dart';
 import 'package:incubator/screen/SaveChick.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/Control.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 final dbref = FirebaseDatabase.instance.reference();
 var now = DateTime.now();
 var afteraccept;
@@ -158,7 +159,7 @@ class _AcceptChickState extends State<AcceptChick> {
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -197,7 +198,7 @@ class _AcceptChickState extends State<AcceptChick> {
 
     ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -222,7 +223,7 @@ class _AcceptChickState extends State<AcceptChick> {
   }
   ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

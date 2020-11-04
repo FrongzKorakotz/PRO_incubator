@@ -4,6 +4,7 @@ import 'package:incubator/data/firebase.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/Status2.dart';
 import 'package:incubator/screen/Status3.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 String qrCode = "";
 String qrCodex;

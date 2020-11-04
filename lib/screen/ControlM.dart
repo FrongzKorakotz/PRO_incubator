@@ -13,6 +13,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 final dbref = FirebaseDatabase.instance.reference();
 var now = DateTime.now();
@@ -34,6 +35,16 @@ String turnEgg_id;
     "32"
   ];
   List<String> tempE = [
+    "30.0",
+    "30.5",
+    "31.0",
+    "31.5",
+    "32.0",
+    "32.5",
+    "33.0",
+    "33.5",
+    "34.0",
+    "34.5",
     "35.0",
     "36.0",
     "37.0",
@@ -268,7 +279,7 @@ Timer _everySecond;
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -307,7 +318,7 @@ Timer _everySecond;
 
     ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -332,7 +343,7 @@ Timer _everySecond;
   }
   ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

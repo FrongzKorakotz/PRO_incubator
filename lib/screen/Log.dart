@@ -9,6 +9,8 @@ import 'package:incubator/screen/Chickdata.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 
 class Log extends StatefulWidget {
   @override
@@ -44,7 +46,7 @@ class _LogState extends State<Log> {
 
   ListTile showCONTROL() {
     return ListTile(
-      leading: Icon(Icons.settings),
+      leading: Icon(MdiIcons.tableSettings),
       title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
@@ -59,7 +61,7 @@ class _LogState extends State<Log> {
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -97,7 +99,7 @@ class _LogState extends State<Log> {
   }
     ListTile showIndata() {
     return ListTile(
-      leading: Icon(Icons.show_chart),
+      leading: Icon(MdiIcons.temperatureCelsius),
       title: Text("อุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

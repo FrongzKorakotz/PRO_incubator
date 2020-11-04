@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:incubator/data/firebase.dart';
 import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Status2.dart';
@@ -76,8 +77,45 @@ void choiceAction(String choice){
         child: Center(
           child: Column(         
             children: <Widget>[
+            SizedBox(height:20),
+            Row(
+            children: [
+
+              SizedBox(width:230),
+              Icon(
+                MdiIcons.fan,
+                color: int.parse(fan1x) > 0 ? Colors.green : Colors.redAccent,
+                size: 20,
+              ),
+            SizedBox(
+                width: 10,
+              ),
+              Icon(
+                MdiIcons.lightbulb,
+                color: int.parse(light1x) > 0 ? Colors.green : Colors.redAccent,
+                size: 20,
+              ),SizedBox(
+                width: 10,
+              ), Icon(
+                MdiIcons.waterPump,
+                color: int.parse(pumpin1x) > 0 ? Colors.green : Colors.redAccent,
+                size: 20,
+              ),
+              Text("in",style: TextStyle(color:Colors.black)),
+            SizedBox(
+                width: 10,
+              ),
+              Icon(
+                MdiIcons.waterPump,
+                color: int.parse(pumpout1x) > 0 ? Colors.green : Colors.redAccent,
+                size: 20,
+              ),
+              Text("out",style: TextStyle(color:Colors.black))
+            
+            ],
+          ),
               
-              SizedBox(height: 50,),
+              SizedBox(height: 10,),
               Stack(
                 alignment: Alignment.topLeft,
                 children: [
@@ -163,7 +201,7 @@ void choiceAction(String choice){
 
     ListTile showCONTROL() {
     return ListTile(
-      leading: Icon(Icons.settings),
+      leading: Icon(MdiIcons.tableSettings),
       title: Text("ตั้งค่าตู้ฟักไข่"),
       onTap: () {
         Navigator.pop(context);
@@ -176,7 +214,7 @@ void choiceAction(String choice){
 
   ListTile showalertTH() {
     return ListTile(
-      leading: Icon(Icons.add_alert),
+      leading: Icon(MdiIcons.thermometerAlert),
       title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
@@ -189,7 +227,7 @@ void choiceAction(String choice){
 
     ListTile saveChickdata() {
     return ListTile(
-      leading: Icon(Icons.info),
+      leading: Icon(MdiIcons.contentSave),
       title: Text("บันทึกข้อมูลของสายพันธุ์"),
       onTap: () {
         Navigator.pop(context);
@@ -227,7 +265,7 @@ void choiceAction(String choice){
   }
   ListTile showLogdata() {
     return ListTile(
-      leading: Icon(Icons.swap_vertical_circle),
+      leading: Icon(MdiIcons.thermometerLines),
       title: Text("ดูบันทึกอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);

@@ -36,6 +36,11 @@ final dateend2 = FirebaseDatabase.instance.reference().child('Date2').child('Dat
 final datenow3 = FirebaseDatabase.instance.reference().child('Date3').child('DateNow');
 final dateend3 = FirebaseDatabase.instance.reference().child('Date3').child('DateEnd');
 
+final fan1 = FirebaseDatabase.instance.reference().child('Control').child('id1').child('fan');
+final light1 = FirebaseDatabase.instance.reference().child('Control').child('id1').child('light');
+final pumpin1 = FirebaseDatabase.instance.reference().child('Control').child('id1').child('pumpin');
+final pumpout1 = FirebaseDatabase.instance.reference().child('Control').child('id1').child('pumpout');
+
 String qrFormatdata1;
 String qrFormatdata2;
 String qrFormatdata3;
@@ -50,6 +55,11 @@ String dateNow2;
 String dateEnd2;
 String dateNow3;
 String dateEnd3;
+
+String fan1x;
+String light1x;
+String pumpin1x;
+String pumpout1x;
 
 void readatatemp(){
     tempRef.once().then((DataSnapshot dataSnapshot){
@@ -191,6 +201,34 @@ void passQrR3(){
   passFire3.once().then((DataSnapshot dataSnapshot){
       var passFire33 = dataSnapshot.value.toString();
       passQr3 = passFire33;
+      //print(qrFormatdata1);
+    });
+}
+void fanrun(){
+  fan1.once().then((DataSnapshot dataSnapshot){
+      var fan1s = dataSnapshot.value.toString();
+      fan1x = fan1s;
+      //print(qrFormatdata1);
+    });
+}
+void lightrun(){
+  light1.once().then((DataSnapshot dataSnapshot){
+      var light1s = dataSnapshot.value.toString();
+       light1x = light1s;
+      //print(qrFormatdata1);
+    });
+}
+void pumpinrun(){
+  pumpin1.once().then((DataSnapshot dataSnapshot){
+      var pumpin1s = dataSnapshot.value.toString();
+      pumpin1x = pumpin1s;
+      //print(qrFormatdata1);
+    });
+}
+void pumpoutrun(){
+  pumpout1.once().then((DataSnapshot dataSnapshot){
+      var pumpout1s = dataSnapshot.value.toString();
+      pumpout1x = pumpout1s;
       //print(qrFormatdata1);
     });
 }
