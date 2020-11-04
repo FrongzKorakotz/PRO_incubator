@@ -7,22 +7,29 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:incubator/main.dart';
+import 'package:firebase_database/firebase_database.dart';
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
 class Alertth extends StatefulWidget {
   @override
   _AlertthState createState() => _AlertthState();
 }
 
 class _AlertthState extends State<Alertth> {
-
+  Query _ref;
   @override
   void initState() {
     super.initState();
+     _ref = FirebaseDatabase.instance
+        .reference()
+        .child('Notification')
+        .orderByChild('Date');
      _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         _printMsg(message);
@@ -49,6 +56,124 @@ class _AlertthState extends State<Alertth> {
     print(message.toString());
   }
 
+  Widget _buildContactItem({Map contact}) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(10),
+      height: 120,
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.date_range,
+                color: Colors.red,
+                size: 20,
+              ),
+              SizedBox(
+                width: 6,
+              ),
+              Text(
+                contact['Date'],
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w600),
+              ),SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.timer,
+                color: Colors.red,
+                size: 20,
+              ),
+              SizedBox(
+                width: 6,
+              ),
+              Text(
+                contact['Time'],
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [Text(
+                "อุณหภูมิ",
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.red,
+                    fontWeight: FontWeight.w600),
+              ),SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.terrain,
+                color: Colors.redAccent[200],
+                size: 20,
+              ),
+              SizedBox(
+                width: 6,
+              ),
+              Text(
+                contact['Temp'],
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.w600),
+              ),
+              
+            ],
+          ), SizedBox(
+            height: 10,
+          ), Row(
+            children: [
+               Text(
+                "ความชื้น",
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.green,
+                    fontWeight: FontWeight.w600),
+              ),SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.group_work,
+                color: Colors.greenAccent,
+                size: 20,
+              ),
+              SizedBox(
+                width: 6,
+              ),
+              Text(
+                contact['Humidity'],
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.greenAccent[200],
+                    fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  Color getTypeColor(String type) {
+    Color color = Theme.of(context).accentColor;
+
+    if (type == 'Date') {
+      color = Colors.green;
+    }
+    return color;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +188,14 @@ class _AlertthState extends State<Alertth> {
           image: DecorationImage(
               image: AssetImage("lib/img/bgx.png"), fit: BoxFit.cover),
         ),
-        child: Center(child: Column(children: <Widget>[
-  
-        ],),),
+        height: double.infinity,
+        child: FirebaseAnimatedList(query: _ref, itemBuilder: (BuildContext context, DataSnapshot snapshot,
+              Animation<double> animation, int index) {
+            Map contact = snapshot.value;
+            return _buildContactItem(contact: contact);
+          },
     ),
-    );
+    ));
   }
     Drawer showDrawer() => Drawer(
           child: ListView(

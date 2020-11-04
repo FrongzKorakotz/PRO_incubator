@@ -7,7 +7,6 @@ import 'package:incubator/screen/Chickdata.dart';
 import 'package:incubator/screen/Log.dart';
 import 'package:incubator/screen/Status.dart';
 import 'package:incubator/screen/control.dart';
-import 'package:incubator/screen/Alertchick.dart';
 import 'package:incubator/screen/Alertth.dart';
 import 'package:incubator/screen/Manual.dart';
 import 'package:image_picker/image_picker.dart';
@@ -251,7 +250,7 @@ class _SaveChickState extends State<SaveChick> {
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => Alertchick());
+            MaterialPageRoute(builder: (value) => SaveChick());
         Navigator.push(context, route);
       },
     );
