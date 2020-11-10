@@ -280,7 +280,7 @@ Timer _everySecond;
   ListTile showalertTH() {
     return ListTile(
       leading: Icon(MdiIcons.thermometerAlert),
-      title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
+      title: Text("บันทึกแจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route =
@@ -369,7 +369,7 @@ void writedata(){
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
     Future<List> senddata() async {
-  final response = await http.post("http://192.168.2.33/nodemcu/esp8266mysql/configincubator.php?incubator_ID=1&Temp="+tempEgg_id+"&Humidity="+humEgg_id+"&Turnrate="+turnEgg_id+"&daystart="+timeEgg_id, body: {
+  final response = await http.post("http://192.168.2.36/nodemcu/esp8266mysql/configincubator.php?incubator_ID=1&Temp="+tempEgg_id+"&Humidity="+humEgg_id+"&Turnrate="+turnEgg_id+"&daystart="+timeEgg_id, body: {
     "incubator_ID": "1",
     "Temp": tempEgg_id,
     "Humidity":humEgg_id,
@@ -391,7 +391,7 @@ void writedata(){
     afterdateformat = '${formatter.format(afteraccept)}';
    
    Future<List> senddata() async {
-    final response = await http.post("http://192.168.2.33/nodemcu/esp8266mysql/configincubator.php?incubator_ID=2&Temp="+tempEgg_id+"&Humidity="+humEgg_id+"&Turnrate="+turnEgg_id+"&daystart="+timeEgg_id, body: {
+    final response = await http.post("http://192.168.2.36/nodemcu/esp8266mysql/configincubator.php?incubator_ID=2&Temp="+tempEgg_id+"&Humidity="+humEgg_id+"&Turnrate="+turnEgg_id+"&daystart="+timeEgg_id, body: {
     "incubator_ID": "2",
     "Temp": tempEgg_id,
     "Humidity":humEgg_id,
@@ -413,7 +413,7 @@ void writedata(){
     beforedateformat = '${formatter.format(beforeaccept)}';
     afterdateformat = '${formatter.format(afteraccept)}';
      Future<List> senddata() async {
-    final response = await http.post("http://192.168.2.33/nodemcu/esp8266mysql/configincubator.php?incubator_ID=3&Temp="+tempEgg_id+"&Humidity="+humEgg_id+"&Turnrate="+turnEgg_id+"&daystart="+timeEgg_id, body: {
+    final response = await http.post("http://192.168.2.36/nodemcu/esp8266mysql/configincubator.php?incubator_ID=3&Temp="+tempEgg_id+"&Humidity="+humEgg_id+"&Turnrate="+turnEgg_id+"&daystart="+timeEgg_id, body: {
     "incubator_ID": "3",
     "Temp": tempEgg_id,
     "Humidity":humEgg_id,

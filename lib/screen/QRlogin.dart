@@ -203,7 +203,7 @@ class _QRloginState extends State<QRlogin> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib/img/bg.JPG"),
+            image: AssetImage("lib/img/bgx.png"),
             fit: BoxFit.cover
           ),
         ),

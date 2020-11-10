@@ -34,12 +34,53 @@ class _AlertthState extends State<Alertth> {
      _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         _printMsg(message);
+        showDialog(
+    context: context,
+    builder: (context) =>
+        AlertDialog(
+          content: ListTile(
+              title: Text(message['notification']['title']),
+           subtitle: Text(message['notification']['body']),
+          ),
+          actions: <Widget>[
+            FlatButton(child: Text('Ok'),onPressed: ()=> Navigator.of(context).pop(),),
+          ],
+          
+        ),);
       },
       onLaunch: (Map<String, dynamic> message) async {
         _printMsg(message);
+         showDialog(
+    context: context,
+    builder: (context) =>
+        AlertDialog(
+          content: ListTile(
+              title: Text(message['notification']['title']),
+           subtitle: Text(message['notification']['body']),
+          ),
+          actions: <Widget>[
+            FlatButton(child: Text('Ok'),onPressed: ()=> Navigator.of(context).pop(),),
+          ],
+          
+        ),);
+   
       },
       onResume: (Map<String, dynamic> message) async {
         _printMsg(message);
+         showDialog(
+    context: context,
+    builder: (context) =>
+        AlertDialog(
+          content: ListTile(
+              title: Text(message['notification']['title']),
+           subtitle: Text(message['notification']['body']),
+          ),
+          actions: <Widget>[
+            FlatButton(child: Text('Ok'),onPressed: ()=> Navigator.of(context).pop(),),
+          ],
+          
+        ),);
+   
       },
     );
     _firebaseMessaging.requestNotificationPermissions(
@@ -52,11 +93,12 @@ class _AlertthState extends State<Alertth> {
       print(token);
     });
     _firebaseMessaging.subscribeToTopic('info_topic');
+
+
   }
    void _printMsg(Map<String, dynamic> message) {
     print(message.toString());
   }
-
   Widget _buildContactItem({Map contact}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -180,7 +222,7 @@ class _AlertthState extends State<Alertth> {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-            margin: EdgeInsets.only(left: 15.0), child: Text("แจ้งเตือนอุณหภูมิ และ ความชื้น",style: TextStyle(color: Colors.blueGrey[400]),)),
+            margin: EdgeInsets.only(left: 0.0), child: Text("บันทึก แจ้งเตือนอุณหภูมิ และ ความชื้น",style: TextStyle(color: Colors.blueGrey[400]),)),
             backgroundColor: Colors.yellow[300]
       ),
       drawer: showDrawer(),
@@ -196,7 +238,15 @@ class _AlertthState extends State<Alertth> {
             return _buildContactItem(contact: contact);
           },
     ),
-    ));
+    ),floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          dbref.child("Notification").remove();
+        },
+        label: Text('Clear'),
+        icon: Icon(MdiIcons.deleteCircle),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
     Drawer showDrawer() => Drawer(
           child: ListView(

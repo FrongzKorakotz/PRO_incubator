@@ -222,7 +222,7 @@ Timer _everySecond;
   ListTile showalertTH() {
     return ListTile(
       leading: Icon(MdiIcons.thermometerAlert),
-      title: Text("แจ้งเตือนอุณหภูมิและความชื้น"),
+      title: Text("บันทึกแจ้งเตือนอุณหภูมิและความชื้น"),
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route =
